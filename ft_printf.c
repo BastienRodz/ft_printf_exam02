@@ -6,7 +6,7 @@
 /*   By: barodrig <barodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 14:45:44 by barodrig          #+#    #+#             */
-/*   Updated: 2021/02/05 17:17:40 by barodrig         ###   ########.fr       */
+/*   Updated: 2021/02/05 19:25:53 by barodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ typedef	struct	s_pf
 	int	width;
 	int	width_after;
 	int	point;
+	int	zero;
 }				t_pf;
 
 int			ft_isdigit(char c)
@@ -33,7 +34,7 @@ int			ft_isdigit(char c)
 
 int			ft_istype(char c)
 {
-	if (c == 'd' || c == 'x' || c == 'd')
+	if (c == 's' || c == 'x' || c == 'd')
 		return (1);
 	else
 		return (0);
@@ -46,6 +47,7 @@ t_pf		ft_init_flags(void)
 	flags.width = 0;
 	flags.width_after = 0;
 	flags.point = 0;
+	flags.zero = 0;
 
 	return (flags);
 }
@@ -79,6 +81,61 @@ const char	*ft_strdup(const char *str)
 	return (content);
 }
 
+long int	ft_change_sign(long int nbr)
+{
+	if (nbr < 0)
+		return (-nbr);
+	else
+		return (nbr);
+}
+
+int			ft_sign(int n)
+{
+	if (n < 0)
+		return (-1);
+	else
+		return (1);
+}
+
+int			ft_len(long int nbr)
+{
+	int len;
+
+	if (nbr <= 0)
+		len = 1;
+	else
+		len = 0;
+	while (nbr != 0)
+	{
+		nbr = nbr / 10;
+		len++;
+	}
+	return (len);
+}
+
+char		*ft_itoa(int n)
+{
+	int		len;
+	int		sign;
+	char	*str;
+
+	sign = ft_sign(n);
+	len = ft_len(n);
+	if (!(str = (char *)malloc(sizeof(char) * (len + 1))))
+		return (NULL);
+	str[len] = '\0';
+	len--;
+	while (len >= 0)
+	{
+		str[len] = '0' + ft_change_sign(n % 10);
+		n = n / 10;
+		len--;
+	}
+	if (sign == -1)
+		str[0] = '-';
+	return (str);
+}
+
 int			ft_putchar(char c)
 {
 	write(1, &c, 1);
@@ -102,7 +159,7 @@ int		ft_width_manager(int width, int width_after, int zero)
 	int count;
 
 	count = 0;
-	while (width_after - width_after > 0)
+	while (width - width_after > 0)
 	{
 		if (zero == 1)
 			count += ft_putchar('0');
@@ -110,6 +167,41 @@ int		ft_width_manager(int width, int width_after, int zero)
 			count += ft_putchar(' ');
 		width--;
 	}
+	return (count);
+}
+
+int		ft_int_manager(t_pf flags, int nbr)
+{
+	int		count;
+	int		temp_nbr;
+	char	*strnbr;
+
+	temp_nbr = nbr;
+	count = 0;
+	if (nbr == 0 && flags.width_after == 0 && flags.point == 1)
+	{
+		count += ft_width_manager(flags.width, 0, 0);
+		return (count);
+	}
+	if (flags.point == 1 && nbr < 0)
+	{
+		nbr = -nbr;
+		flags.zero = 1;
+		flags.width--;
+	}
+	strnbr = ft_itoa(nbr);
+	if (flags.width_after < ft_strlen(strnbr) && flags.point == 1)
+		flags.width_after = ft_strlen(strnbr);
+	if (flags.point == 1)
+		count += ft_width_manager(flags.width, flags.width_after, 0);
+	else
+		count += ft_width_manager(flags.width, ft_strlen(strnbr), 0);
+	if (flags.point == 1 && temp_nbr < 0)
+		count += ft_putchar('-');
+	if (flags.point == 1)
+		count += ft_width_manager(flags.width_after, ft_strlen(strnbr), 1);
+	count += ft_putnstr(strnbr, ft_strlen(strnbr));
+	free(strnbr);
 	return (count);
 }
 
@@ -122,15 +214,16 @@ int			ft_string_manager(t_pf flags, char *str)
 	count = 0;
 	if (str == NULL)
 		str = "(null)";
-	printf("FT_STRLEN STR = %i\n", ft_strlen(str));
-	if (flags.point == 1 && flags.width == 0)
-		return (count);
-	if (flags.point == 0)
+	if (flags.point == 1 && flags.width_after > ft_strlen(str))
 		flags.width_after = ft_strlen(str);
-	count += ft_width_manager(flags.width, flags.width_after, 0);
+	if (flags.point == 0)
+	{
+		flags.width_after = ft_strlen(str);
+		count += ft_width_manager(flags.width, flags.width_after, 0);
+	}
 	if (flags.point == 1)
 	{
-		count += ft_width_manager(flags.width_after, ft_strlen(str), 0);
+		count += ft_width_manager(flags.width, flags.width_after, 0);
 		count += ft_putnstr(str, flags.width_after);
 	}
 	else
@@ -155,12 +248,12 @@ int			content_manager(const char *content, va_list args)
 			i++;
 			while (content[i])
 			{
-				printf("\nPROUT\n");
 				if (!ft_istype(content[i]) && !ft_isdigit(content[i]) && content[i] != '.')
 					break ;
 				if (content[i] == '.')
 				{
 					i++;
+					flags.point = 1;
 					while (ft_isdigit(content[i]))
 					{
 						flags.width_after = (flags.width_after * 10) + (content[i] - '0');
@@ -177,6 +270,8 @@ int			content_manager(const char *content, va_list args)
 			{
 				if (content[i] == 's')
 					count += ft_string_manager(flags, va_arg(args, char*));
+				if (content[i] == 'd')
+					count += ft_int_manager(flags, va_arg(args, int));
 			}
 			else if (content[i])
 				count += ft_putchar(content[i]);

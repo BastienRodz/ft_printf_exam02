@@ -6,7 +6,7 @@
 /*   By: barodrig <barodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 16:05:47 by barodrig          #+#    #+#             */
-/*   Updated: 2021/02/05 16:20:15 by barodrig         ###   ########.fr       */
+/*   Updated: 2021/02/05 19:12:23 by barodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,116 @@
 #include <limits.h>
 #include "ft_printf.h"
 
-int		main(int argc, char **argv)
+int		main(void)
 {
-	(void)argc;
-	printf("\nCeci est un prout\n");
-	ft_printf("Ceci est un prout\n");
+	char *str;
+	str = "prout";
 
-	printf("Ceci est un %s\n", argv[1]);
-	ft_printf("Ceci est un %s\n", argv[1]);
+					printf("\n\n                               STRINGS TEST\n\n");
 
-	printf("\nCeci est un %10s\n", argv[1]);
-	ft_printf("Ceci est un %10s\n", argv[1]);
+	printf("RETURN PRINTF = %d\n\n", printf("Ceci est un prout\n"));
+	printf("RETURN FT_PRINTF = %d\n\n", ft_printf("Ceci est un prout\n"));
 
-	printf("\nCeci est un %10.0s\n", argv[1]);
-	ft_printf("Ceci est un %10.0s\n", argv[1]);
+		printf("\n-- -- -- -- -- -- -- -- -- -- -- -- -- -- --\n\n");
+
+	printf("RETURN PRINTF = %d\n\n", printf("Ceci est un %s\n", str));
+	printf("RETURN FT_PRINTF = %d\n\n", ft_printf("Ceci est un %s\n", str));
+
+		printf("\n-- -- -- -- -- -- -- -- -- -- -- -- -- -- --\n\n");
+
+	printf("RETURN PRINTF = %d\n\n", printf("Ceci est un %10.5s\n", str));
+	printf("RETURN FT_PRINTF = %d\n\n", ft_printf("Ceci est un %10.5s\n", str));
+
+		printf("\n-- -- -- -- -- -- -- -- -- -- -- -- -- -- --\n\n");
+
+	printf("RETURN PRINTF = %d\n\n", printf("Ceci est un %10.2s\n", str));
+	printf("RETURN FT_PRINTF = %d\n\n", ft_printf("Ceci est un %10.2s\n", str));
+
+		printf("\n-- -- -- -- -- -- -- -- -- -- -- -- -- -- --\n\n");
+
+	printf("RETURN PRINTF = %d\n\n", printf("Ceci est un %10.0s\n", str));
+	printf("RETURN FT_PRINTF = %d\n\n", ft_printf("Ceci est un %10.0s\n", str));
+
+	printf("\n-- -- -- -- -- -- -- -- -- -- -- -- -- -- --\n\n");
+
+	printf("RETURN PRINTF = %d\n\n", printf("Ceci est un %10s\n", NULL));
+	printf("RETURN FT_PRINTF = %d\n\n", ft_printf("Ceci est un %10s\n", NULL));
+
+		printf("\n-- -- -- -- -- -- -- -- -- -- -- -- -- -- --\n\n");
+
+	printf("RETURN PRINTF = %d\n\n", printf("Ceci est un %10.20s\n", str));
+	printf("RETURN FT_PRINTF = %d\n\n", ft_printf("Ceci est un %10.20s\n", str));
+
+		printf("\n-- -- -- -- -- -- -- -- -- -- -- -- -- -- --\n\n");
+
+	printf("RETURN PRINTF = %d\n\n", printf("Ceci est un %3s\n", str));
+	printf("RETURN FT_PRINTF = %d\n\n", ft_printf("Ceci est un %3s\n", str));
+
+		printf("\n-- -- -- -- -- -- -- -- -- -- -- -- -- -- --\n\n");
+					printf("\n\n                               INTEGERS TEST\n\n");
+	int i;
+	i = 123;
+
+	printf("RETURN PRINTF = %d\n\n", printf("Ceci est un %d\n", i));
+	printf("RETURN FT_PRINTF = %d\n\n", ft_printf("Ceci est un %d\n", i));
+
+		printf("\n-- -- -- -- -- -- -- -- -- -- -- -- -- -- --\n\n");
+
+	printf("RETURN PRINTF = %d\n\n", printf("Ceci est un %10.5d\n", i));
+	printf("RETURN FT_PRINTF = %d\n\n", ft_printf("Ceci est un %10.5d\n", i));
+
+		printf("\n-- -- -- -- -- -- -- -- -- -- -- -- -- -- --\n\n");
+
+	printf("RETURN PRINTF = %d\n\n", printf("Ceci est un %10.2d\n", i));
+	printf("RETURN FT_PRINTF = %d\n\n", ft_printf("Ceci est un %10.2d\n", i));
+
+		printf("\n-- -- -- -- -- -- -- -- -- -- -- -- -- -- --\n\n");
+
+	printf("RETURN PRINTF = %d\n\n", printf("Ceci est un %10.0d\n", i));
+	printf("RETURN FT_PRINTF = %d\n\n", ft_printf("Ceci est un %10.0d\n", i));
+
+		printf("\n-- -- -- -- -- -- -- -- -- -- -- -- -- -- --\n\n");
+
+	printf("RETURN PRINTF = %d\n\n", printf("Ceci est un %10.20d\n", i));
+	printf("RETURN FT_PRINTF = %d\n\n", ft_printf("Ceci est un %10.20d\n", i));
+
+		printf("\n-- -- -- -- -- -- -- -- -- -- -- -- -- -- --\n\n");
+
+	printf("RETURN PRINTF = %d\n\n", printf("Ceci est un %3d\n", i));
+	printf("RETURN FT_PRINTF = %d\n\n", ft_printf("Ceci est un %3d\n", i));
+
+
+		printf("\n-- -- -- -- -- -- -- -- -- -- -- -- -- -- --\n\n");
+
+	i = -12;
+
+		printf("RETURN PRINTF = %d\n\n", printf("Ceci est un %d\n", i));
+	printf("RETURN FT_PRINTF = %d\n\n", ft_printf("Ceci est un %d\n", i));
+
+		printf("\n-- -- -- -- -- -- -- -- -- -- -- -- -- -- --\n\n");
+
+	printf("RETURN PRINTF = %d\n\n", printf("Ceci est un %10.5d\n", i));
+	printf("RETURN FT_PRINTF = %d\n\n", ft_printf("Ceci est un %10.5d\n", i));
+
+		printf("\n-- -- -- -- -- -- -- -- -- -- -- -- -- -- --\n\n");
+
+	printf("RETURN PRINTF = %d\n\n", printf("Ceci est un %10.2d\n", i));
+	printf("RETURN FT_PRINTF = %d\n\n", ft_printf("Ceci est un %10.2d\n", i));
+
+		printf("\n-- -- -- -- -- -- -- -- -- -- -- -- -- -- --\n\n");
+
+	printf("RETURN PRINTF = %d\n\n", printf("Ceci est un %10.0d\n", i));
+	printf("RETURN FT_PRINTF = %d\n\n", ft_printf("Ceci est un %10.0d\n", i));
+
+		printf("\n-- -- -- -- -- -- -- -- -- -- -- -- -- -- --\n\n");
+
+	printf("RETURN PRINTF = %d\n\n", printf("Ceci est un %10.20d\n", i));
+	printf("RETURN FT_PRINTF = %d\n\n", ft_printf("Ceci est un %10.20d\n", i));
+
+		printf("\n-- -- -- -- -- -- -- -- -- -- -- -- -- -- --\n\n");
+
+	printf("RETURN PRINTF = %d\n\n", printf("Ceci est un %3d\n", i));
+	printf("RETURN FT_PRINTF = %d\n\n", ft_printf("Ceci est un %3d\n", i));
 
 	return (0);
 }
