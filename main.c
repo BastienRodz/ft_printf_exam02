@@ -6,7 +6,7 @@
 /*   By: barodrig <barodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 16:05:47 by barodrig          #+#    #+#             */
-/*   Updated: 2021/02/05 19:12:23 by barodrig         ###   ########.fr       */
+/*   Updated: 2021/02/08 15:40:52 by barodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,108 @@ int		main(void)
 
 	printf("RETURN PRINTF = %d\n\n", printf("Ceci est un %3d\n", i));
 	printf("RETURN FT_PRINTF = %d\n\n", ft_printf("Ceci est un %3d\n", i));
+
+			printf("\n-- -- -- -- -- -- -- -- -- -- -- -- -- -- --\n\n");
+
+	printf("RETURN PRINTF = %d\n\n", printf("Ceci est un %3i\n", -2147483647));
+	printf("RETURN FT_PRINTF = %d\n\n", ft_printf("Ceci est un %3d\n", -2147483647));
+
+		printf("\n-- -- -- -- -- -- -- -- -- -- -- -- -- -- --\n\n");
+
+	printf("RETURN PRINTF = %d\n\n", printf("Ceci est un %3d\n", 2147483647));
+	printf("RETURN FT_PRINTF = %d\n\n", ft_printf("Ceci est un %3d\n", 2147483647));
+
+			printf("\n-- -- -- -- -- -- -- -- -- -- -- -- -- -- --\n\n");
+
+	printf("RETURN PRINTF = %d\n\n", printf("Ceci est un %3d\n", 0));
+	printf("RETURN FT_PRINTF = %d\n\n", ft_printf("Ceci est un %3d\n", 0));
+
+			printf("\n-- -- -- -- -- -- -- -- -- -- -- -- -- -- --\n\n");
+					printf("\n\n                               HEXADECIMALS TEST\n\n");
+	unsigned int j;
+	j = 28036591;
+
+	printf("RETURN PRINTF = %d\n\n", printf("Ceci est un %x\n", j));
+	printf("RETURN FT_PRINTF = %d\n\n", ft_printf("Ceci est un %x\n", j));
+
+		printf("\n-- -- -- -- -- -- -- -- -- -- -- -- -- -- --\n\n");
+
+	printf("RETURN PRINTF = %d\n\n", printf("Ceci est un %10.5x\n", j));
+	printf("RETURN FT_PRINTF = %d\n\n", ft_printf("Ceci est un %10.5x\n", j));
+
+		printf("\n-- -- -- -- -- -- -- -- -- -- -- -- -- -- --\n\n");
+
+	printf("RETURN PRINTF = %d\n\n", printf("Ceci est un %10.2x\n", j));
+	printf("RETURN FT_PRINTF = %d\n\n", ft_printf("Ceci est un %10.2x\n", j));
+
+		printf("\n-- -- -- -- -- -- -- -- -- -- -- -- -- -- --\n\n");
+
+	printf("RETURN PRINTF = %d\n\n", printf("Ceci est un %10.0x\n", j));
+	printf("RETURN FT_PRINTF = %d\n\n", ft_printf("Ceci est un %10.0x\n", j));
+
+		printf("\n-- -- -- -- -- -- -- -- -- -- -- -- -- -- --\n\n");
+
+	printf("RETURN PRINTF = %d\n\n", printf("Ceci est un %10.20x\n", j));
+	printf("RETURN FT_PRINTF = %d\n\n", ft_printf("Ceci est un %10.20x\n", j));
+
+		printf("\n-- -- -- -- -- -- -- -- -- -- -- -- -- -- --\n\n");
+
+	printf("RETURN PRINTF = %d\n\n", printf("Ceci est un %3x\n", j));
+	printf("RETURN FT_PRINTF = %d\n\n", ft_printf("Ceci est un %3x\n", j));
+
+
+		printf("\n-- -- -- -- -- -- -- -- -- -- -- -- -- -- --\n\n");
+
+	j = -28036591;
+
+		printf("RETURN PRINTF = %d\n\n", printf("Ceci est un %x\n", j));
+	printf("RETURN FT_PRINTF = %d\n\n", ft_printf("Ceci est un %x\n", j));
+
+		printf("\n-- -- -- -- -- -- -- -- -- -- -- -- -- -- --\n\n");
+
+	printf("RETURN PRINTF = %d\n\n", printf("Ceci est un %10.5x\n", j));
+	printf("RETURN FT_PRINTF = %d\n\n", ft_printf("Ceci est un %10.5x\n", j));
+
+		printf("\n-- -- -- -- -- -- -- -- -- -- -- -- -- -- --\n\n");
+
+	printf("RETURN PRINTF = %d\n\n", printf("Ceci est un %10.2x\n", j));
+	printf("RETURN FT_PRINTF = %d\n\n", ft_printf("Ceci est un %10.2x\n", j));
+
+		printf("\n-- -- -- -- -- -- -- -- -- -- -- -- -- -- --\n\n");
+
+	printf("RETURN PRINTF = %d\n\n", printf("Ceci est un %10.0x\n", j));
+	printf("RETURN FT_PRINTF = %d\n\n", ft_printf("Ceci est un %10.0x\n", j));
+
+		printf("\n-- -- -- -- -- -- -- -- -- -- -- -- -- -- --\n\n");
+
+	printf("RETURN PRINTF = %d\n\n", printf("Ceci est un %10.20x\n", j));
+	printf("RETURN FT_PRINTF = %d\n\n", ft_printf("Ceci est un %10.20x\n", j));
+
+		printf("\n-- -- -- -- -- -- -- -- -- -- -- -- -- -- --\n\n");
+
+	printf("RETURN PRINTF = %d\n\n", printf("Ceci est un %3x\n", j));
+	printf("RETURN FT_PRINTF = %d\n\n", ft_printf("Ceci est un %3x\n", j));
+
+			printf("\n-- -- -- -- -- -- -- -- -- -- -- -- -- -- --\n\n");
+
+	printf("RETURN PRINTF = %d\n\n", printf("Ceci est un %3x\n", -2147483647));
+	printf("RETURN FT_PRINTF = %d\n\n", ft_printf("Ceci est un %3x\n", -2147483647));
+
+		printf("\n-- -- -- -- -- -- -- -- -- -- -- -- -- -- --\n\n");
+
+	printf("RETURN PRINTF = %d\n\n", printf("Ceci est un %3x\n", 2147483647));
+	printf("RETURN FT_PRINTF = %d\n\n", ft_printf("Ceci est un %3x\n", 2147483647));
+
+			printf("\n-- -- -- -- -- -- -- -- -- -- -- -- -- -- --\n\n");
+
+	printf("RETURN PRINTF = %d\n\n", printf("Ceci est un %3x\n", 0));
+	printf("RETURN FT_PRINTF = %d\n\n", ft_printf("Ceci est un %3x\n", 0));
+
+		printf("\n-- -- -- -- -- -- -- -- -- -- -- -- -- -- --\n\n");
+
+	printf("RETURN PRINTF = %d\n\n", printf("Ceci est un %3x\n", -4000000000));
+	printf("RETURN FT_PRINTF = %d\n\n", ft_printf("Ceci est un %3x\n", -4000000000));
+
 
 	return (0);
 }

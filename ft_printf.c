@@ -6,7 +6,7 @@
 /*   By: barodrig <barodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 14:45:44 by barodrig          #+#    #+#             */
-/*   Updated: 2021/02/05 19:25:53 by barodrig         ###   ########.fr       */
+/*   Updated: 2021/02/08 15:30:03 by barodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,6 +170,66 @@ int		ft_width_manager(int width, int width_after, int zero)
 	return (count);
 }
 
+char	*ft_hextoa_base(unsigned long long nbr)
+{
+	char	*tab;
+	char	*base;
+	char	tmp;
+	int		i;
+	int		j;
+
+	base = "0123456789abcdef";
+	i = 0;
+	tab = malloc(sizeof(char) * 25);
+	if (nbr == 0)
+		tab[i] = base[nbr % 16];
+	while (nbr)
+	{
+		tab[i++] = base[nbr % 16];
+		nbr /= 16;
+	}
+	j = 0;
+	if (i == 0)
+		i++;
+	while (j < i / 2)
+	{
+		tmp = tab[j];
+		tab[j] = tab[i - 1 - j];
+		tab[i - 1 - j] = tmp;
+		j++;
+	}
+	tab[i] = '\0';
+	return (tab);
+}
+
+int		ft_hex_manager(t_pf flags, unsigned int nbr)
+{
+	int					count;
+	char				*strnbr;
+
+	count = 0;
+	if (nbr == 0 && flags.width_after == 0 && flags.point == 1)
+	{
+		count += ft_width_manager(flags.width, 0, 0);
+		return (count);
+	}
+	strnbr = ft_hextoa_base((unsigned long long)nbr);
+	if (flags.width_after < ft_strlen(strnbr) && flags.point == 1)
+		flags.width_after = ft_strlen(strnbr);
+	if (flags.point == 1)
+	{
+		flags.width = flags.width - flags.width_after;
+		count += ft_width_manager(flags.width, 0, 0);
+	}
+	else
+		count += ft_width_manager(flags.width, ft_strlen(strnbr), flags.zero);
+	if (flags.point == 1)
+		count += ft_width_manager(flags.width_after - 1, ft_strlen(strnbr) - 1, 1);
+	count += ft_putnstr(strnbr, ft_strlen(strnbr));
+	free(strnbr);
+	return (count);
+}
+
 int		ft_int_manager(t_pf flags, int nbr)
 {
 	int		count;
@@ -272,6 +332,8 @@ int			content_manager(const char *content, va_list args)
 					count += ft_string_manager(flags, va_arg(args, char*));
 				if (content[i] == 'd')
 					count += ft_int_manager(flags, va_arg(args, int));
+				if (content[i] == 'x')
+					count += ft_hex_manager(flags, va_arg(args, unsigned int));
 			}
 			else if (content[i])
 				count += ft_putchar(content[i]);
