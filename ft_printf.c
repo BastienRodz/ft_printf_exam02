@@ -6,7 +6,7 @@
 /*   By: barodrig <barodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 14:45:44 by barodrig          #+#    #+#             */
-/*   Updated: 2021/02/08 15:30:03 by barodrig         ###   ########.fr       */
+/*   Updated: 2021/02/19 12:27:18 by barodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -288,7 +288,7 @@ int			ft_string_manager(t_pf flags, char *str)
 	}
 	else
 		count += ft_putnstr(str, ft_strlen(str));
-	return(count);
+	return (count);
 }
 
 int			content_manager(const char *content, va_list args)
